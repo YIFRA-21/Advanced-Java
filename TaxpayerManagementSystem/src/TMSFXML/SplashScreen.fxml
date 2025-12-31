@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="splashLayout" alignment="CENTER" spacing="20" 
+      style="-fx-background-color: linear-gradient(to bottom, #1A5276, #2980B9);" 
+      xmlns="http://javafx.com/javafx/17" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="TMSController.SplashScreenController">
+    
+    <!-- Optional: Add logo image -->
+    <ImageView fx:id="logoImageView" 
+               fitWidth="150" 
+               fitHeight="150" 
+               preserveRatio="true">
+        <VBox.margin>
+            <Insets bottom="20" />
+        </VBox.margin>
+    </ImageView>
+    
+    <Label style="-fx-font-family: 'Nyala'; -fx-font-size: 48; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, black, 10, 0.5, 0, 0);" 
+           text="የኢትዮጵያ ገቢዎች አስተዳደር" />
+    
+    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 32; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, black, 8, 0.5, 0, 0);" 
+           text="Ethiopian Revenue Service" />
+    
+    <ProgressIndicator fx:id="progressIndicator" 
+                       prefHeight="80" 
+                       prefWidth="80" 
+                       style="-fx-progress-color: white;">
+        <VBox.margin>
+            <Insets top="20" />
+        </VBox.margin>
+    </ProgressIndicator>
+    
+</VBox>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox spacing="20" style="-fx-padding: 20;">
+        
+        <!-- Header Section -->
+        <VBox spacing="10">
+            <Text style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-fill: #2c3e50;" text="User Management" />
+            <Text style="-fx-font-size: 14px; -fx-fill: #7f8c8d;" text="Add new users and manage existing user accounts" />
+        </VBox>
+        
+        <!-- Add New User Form -->
+        <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 20;">
+            <Text style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-fill: #2c3e50;" text="Add New User" />
+            
+            <GridPane hgap="15" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER" prefWidth="120" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                    <ColumnConstraints hgrow="NEVER" prefWidth="120" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                </columnConstraints>
+                
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                </rowConstraints>
+                
+                <!-- Row 1: First Name & Last Name -->
+                <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="txtFristname" promptText="Enter first name" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                
+                <Label text="Last Name:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                <TextField fx:id="Txtlastname" promptText="Enter last name" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                
+                <!-- Row 2: Username & Email -->
+                <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="txtusername" promptText="Enter username" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                
+                <Label text="Email:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <TextField fx:id="TxtEmails" promptText="user@example.com" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                
+                <!-- Row 3: Password & Confirm Password -->
+                <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <PasswordField fx:id="txtpassword" promptText="Enter password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                
+                <Label text="Confirm Password:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <PasswordField fx:id="txtconfirnpassword" promptText="Confirm password" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                
+                <!-- Row 4: Role & Status -->
+                <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <ComboBox fx:id="selectRole" onAction="#handlerclickselectRole" promptText="Select role" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                
+                <Label text="Status:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <ComboBox fx:id="selectStatusbtn" onAction="#handlerclickselectStatusbtn" promptText="Select status" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                
+                <!-- Row 5: Phone & Department -->
+                <Label text="Phone Number:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <TextField fx:id="txtphonenumber" promptText="+251 XXX XXX XXX" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                
+                <Label text="Department:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <ComboBox fx:id="selectdepartmentbtn" onAction="#handlerclickselectdepartmentbtn" promptText="Select department" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                
+                <!-- Row 6: Buttons -->
+                <HBox spacing="10" GridPane.columnSpan="4" GridPane.rowIndex="5">
+                    <Button fx:id="AddUserbtn" onAction="#handlerclickAddUserbtn" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="Add User" />
+                    <Button fx:id="Clearformbtn" onAction="#handlerclickClearformbtn" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Clear Form" />
+                    <Button fx:id="cancelbtn" onAction="#handlerclickcancelbtn" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Cancel" />
+                </HBox>
+            </GridPane>
+        </VBox>
+        
+        <Separator />
+        
+        <!-- User List Section -->
+        <VBox spacing="15">
+            <HBox spacing="10">
+                <Text style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-fill: #2c3e50;" text="User List" />
+                <TextField fx:id="txtserchspace" promptText="Search users..." HBox.hgrow="ALWAYS" />
+                <Button fx:id="serchbtn" onAction="#handlerclickserchbtn" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Search" />
+            </HBox>
+            
+            <!-- Users Table -->
+            <TableView>
+                <columns>
+                    <TableColumn fx:id="columonuserID" prefWidth="80" text="User ID" />
+                    <TableColumn fx:id="columonusername" prefWidth="120" text="Username" />
+                    <TableColumn fx:id="columonfullname" prefWidth="150" text="Full Name" />
+                    <TableColumn fx:id="columonemail" prefWidth="180" text="Email" />
+                    <TableColumn fx:id="columonrole" prefWidth="100" text="Role" />
+                    <TableColumn fx:id="columonstatus" prefWidth="80" text="Status" />
+               <TableColumn fx:id="columonDepartment" prefWidth="150" text="Department" />
+               <TableColumn fx:id="columonPhonenumber" prefWidth="150" text="Phonenumber" />
+                </columns>
+                <placeholder>
+                    <Label text="No users found. Click 'Add New User' to create one." />
+                </placeholder>
+            </TableView>
+        </VBox>
+        
+    </VBox>
+</ScrollPane>

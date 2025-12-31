@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+
+<StackPane fx:id="root" style="-fx-background-color: linear-gradient(to bottom right, #1a2a3a, #2C3E50);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TMSController.LoginController">
+    
+    <!-- Background Pattern -->
+    <Rectangle fx:id="pattern" fill="TRANSPARENT" height="800" opacity="0.05" width="1200" />
+    
+    <!-- Login Card -->
+    <VBox fx:id="loginCard" alignment="CENTER" maxWidth="500" spacing="25" style="-fx-background-color: rgba(255, 255, 255, 0.98); -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 25, 0.5, 0, 5);">
+        <padding>
+            <Insets bottom="40" left="50" right="50" top="40" />
+        </padding>
+        
+        <!-- Header Section -->
+        <VBox fx:id="logoInformation" alignment="CENTER" spacing="15">
+            <!-- Logo -->
+            <StackPane>
+                <Circle fill="#1A5276" radius="45" stroke="WHITE" strokeWidth="2" />
+                <VBox alignment="CENTER" spacing="2">
+                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 28; -fx-text-fill: white;" text="ERS" />
+                    <Label style="-fx-font-family: 'Nyala'; -fx-font-size: 20; -fx-text-fill: white;" text="ገቢ" />
+                </VBox>
+            </StackPane>
+            
+            <!-- Titles -->
+            <Label style="-fx-font-family: 'Nyala'; -fx-font-size: 28; -fx-text-fill: #1A5276; -fx-wrap-text: true; -fx-alignment: CENTER;" text="የኢትዮጵያ ገቢዎች አስተዳደር" />
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 20; -fx-text-fill: #2980B9;" text="Ethiopian Revenue Service" />
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #5D6D7E;" text="Tax Management System" />
+        </VBox>
+        
+        <!-- Language Selection -->
+        <VBox fx:id="selectLanguage" alignment="CENTER" maxWidth="400" spacing="10">
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #2C3E50; -fx-font-weight: bold;" text="Select Language" />
+            
+            <HBox alignment="CENTER" spacing="15" />
+            
+            <!-- More Languages Dropdown -->
+            <HBox alignment="CENTER" spacing="10">
+                <ComboBox fx:id="otherLanguagesCombo" onAction="#handleLanguageSelection" prefHeight="35" prefWidth="200" promptText="More languages..." style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8;" />
+            </HBox>
+        </VBox>
+        
+        <Separator prefWidth="350" style="-fx-background-color: #ECF0F1;" />
+        
+        <!-- Login Form -->
+        <VBox fx:id="formBox" alignment="CENTER" maxWidth="400" spacing="20">
+            
+            <!-- Username Field -->
+            <VBox fx:id="usernameInformation" spacing="8">
+                <Label fx:id="usernameLabel" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 16; -fx-text-fill: #2C3E50;" text="Username:" />
+                <TextField fx:id="usernameField" prefHeight="45" promptText="Enter username" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8; -fx-border-width: 1.5; -fx-padding: 12; -fx-font-size: 14; -fx-font-family: 'Segoe UI'; -fx-text-fill: #2C3E50;" />
+            </VBox>
+            
+            <!-- Password Field with Eye Toggle -->
+            <VBox fx:id="passwordInformation" spacing="8">
+                <Label fx:id="passwordLabel" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 16; -fx-text-fill: #2C3E50;" text="Password:" />
+                <HBox fx:id="passwordFieldContainer" alignment="CENTER" spacing="5">
+                    <PasswordField fx:id="hiddenPasswordField" prefHeight="46.0" prefWidth="697.0" promptText="Enter password" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8; -fx-border-width: 1.5; -fx-padding: 12; -fx-font-size: 14; -fx-font-family: 'Segoe UI'; -fx-text-fill: #2C3E50;" />
+                    <TextField fx:id="visiblePasswordField" prefHeight="45" prefWidth="320" promptText="Enter password" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8; -fx-border-width: 1.5; -fx-padding: 12; -fx-font-size: 14; -fx-font-family: 'Segoe UI'; -fx-text-fill: #2C3E50;" visible="false" />
+                    <Button fx:id="showPasswordBtn" ellipsisString="...👁" onAction="#handleShowPassword" prefHeight="35" prefWidth="40" style="-fx-background-color: #BDC3C7; -fx-border-color: #95A5A6; -fx-border-radius: 6; -fx-font-size: 16; -fx-text-fill: #2C3E50;" text="👁" />
+                </HBox>
+            </VBox>
+            
+            <!-- Remember Me & Forgot Password -->
+            <HBox alignment="CENTER_LEFT" maxWidth="400" spacing="20">
+                <CheckBox fx:id="rememberMeCheck" onAction="#handleRememberMe" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #5D6D7E;" text="Remember me" />
+                
+                <Region HBox.hgrow="ALWAYS" />
+                
+                <Hyperlink fx:id="forgotPasswordLink" onAction="#handleForgotPassword" style="-fx-text-fill: #2980B9; -fx-underline: false; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: bold;" text="Forgot password?" />
+            </HBox>
+        </VBox>
+        
+        <!-- Login Button -->
+        <Button fx:id="loginBtn" onAction="#handleLogin" prefHeight="50" prefWidth="350" style="-fx-background-color: linear-gradient(to right, #27AE60, #219653); -fx-background-radius: 10; -fx-text-fill: white; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(46, 204, 113, 0.3), 10, 0.5, 0, 2); -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 18;" text="Sign In" />
+        
+        <!-- Sign Up Link -->
+        <HBox alignment="CENTER">
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #5D6D7E;" text="Don't have an account?" />
+            <Hyperlink fx:id="signupLink" onAction="#handleSignUp" style="-fx-text-fill: #2980B9; -fx-underline: false; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: bold; -fx-padding: 0 0 0 5;" text="Sign Up" />
+        </HBox>
+        
+        <!-- Footer -->
+        <VBox alignment="CENTER" spacing="10">
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 11; -fx-text-fill: #95A5A6; -fx-wrap-text: true; -fx-alignment: CENTER;" text="Version 3.1.0 | © 2025 Ethiopian Revenue Service" />
+        </VBox>
+    </VBox>
+</StackPane>

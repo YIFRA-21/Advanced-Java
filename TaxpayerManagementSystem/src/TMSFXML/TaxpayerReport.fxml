@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TMSController.TaxpayerReportController">
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+    
+    <!-- Header -->
+    <VBox spacing="5">
+        <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Taxpayer Report" />
+        <Label style="-fx-text-fill: #666666; -fx-font-size: 14px;" text="Taxpayer statistics and trends" />
+    </VBox>
+    
+    <Separator />
+    
+    <!-- Report Criteria -->
+    <VBox spacing="15">
+        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Report Criteria" />
+        
+        <GridPane hgap="15" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" prefWidth="150" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+            
+            <Label style="-fx-font-weight: bold;" text="Report Type:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <ComboBox fx:id="reportTypeCombo" onAction="#handleReportTypeCombo" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            
+            <Label style="-fx-font-weight: bold;" text="Start Date:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <DatePicker fx:id="startDatePicker" onAction="#handleStartDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            
+            <Label style="-fx-font-weight: bold;" text="End Date:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <DatePicker fx:id="endDatePicker" onAction="#handleEndDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            
+            <Label style="-fx-font-weight: bold;" text="Taxpayer Category:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <ComboBox fx:id="categoryCombo" onAction="#handleCategoryCombo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            
+            <Label style="-fx-font-weight: bold;" text="Region:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <ComboBox fx:id="regionCombo" onAction="#handleRegionCombo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        </GridPane>
+    </VBox>
+    
+    <!-- Statistics Cards -->
+    <VBox spacing="10">
+        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Taxpayer Statistics" />
+        
+        <GridPane hgap="15" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="120" />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="120" />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="120" />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="120" />
+            </columnConstraints>
+            
+            <rowConstraints>
+                <RowConstraints />
+            </rowConstraints>
+            
+            <VBox spacing="5" style="-fx-padding: 15; -fx-background-color: #e3f2fd; -fx-border-color: #bbdefb; -fx-border-width: 1; -fx-border-radius: 5;">
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #666;" text="Total Taxpayers" />
+                <Label fx:id="totalTaxpayersLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #1565c0;" text="0" />
+            </VBox>
+            
+            <VBox spacing="5" style="-fx-padding: 15; -fx-background-color: #e8f5e8; -fx-border-color: #c8e6c9; -fx-border-width: 1; -fx-border-radius: 5;">
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #666;" text="Active" />
+                <Label fx:id="activeTaxpayersLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2e7d32;" text="0" />
+            </VBox>
+            
+            <VBox spacing="5" style="-fx-padding: 15; -fx-background-color: #fff3e0; -fx-border-color: #ffe0b2; -fx-border-width: 1; -fx-border-radius: 5;">
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #666;" text="New Registrations" />
+                <Label fx:id="newRegistrationsLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #ef6c00;" text="0" />
+            </VBox>
+            
+            <VBox spacing="5" style="-fx-padding: 15; -fx-background-color: #ffebee; -fx-border-color: #ffcdd2; -fx-border-width: 1; -fx-border-radius: 5;">
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #666;" text="Delinquent" />
+                <Label fx:id="delinquentLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #c62828;" text="0" />
+            </VBox>
+        </GridPane>
+    </VBox>
+    
+    <!-- Table Section -->
+    <VBox spacing="10">
+        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Taxpayer Details" />
+        <TableView fx:id="taxpayerTable" style="-fx-pref-height: 300px;" />
+    </VBox>
+    
+    <!-- Action Buttons -->
+    <HBox spacing="10">
+        <Button fx:id="Generatebtn" defaultButton="true" onAction="#handleGenerateReport" style="-fx-font-weight: bold; -fx-padding: 10 20; -fx-background-color: #1e88e5; -fx-text-fill: white;" text="Generate Report" />
+        <Button fx:id="ExportDatebtn" onAction="#handleExportData" style="-fx-padding: 10 20;" text="Export Data" />
+        <Button fx:id="ViewTreandsbtn" onAction="#handleViewTrends" style="-fx-padding: 10 20;" text="View Trends" />
+        <Region HBox.hgrow="ALWAYS" />
+      <Button fx:id="backButtonReportpage" onAction="#handleBackToReportPage" prefHeight="40" prefWidth="180.0" style="-fx-background-color: linear-gradient(to right, #27AE60, #219653); -fx-background-radius: 8; -fx-text-fill: white; -fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-effect: dropshadow(gaussian, rgba(46, 204, 113, 0.3), 10, 0.5, 0, 2);" text="← Back to Report Page" />
+    </HBox>
+</VBox>

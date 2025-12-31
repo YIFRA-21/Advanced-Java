@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TMSController.ReportsController">
+    
+    <!-- Top Header -->
+    <top>
+        <VBox style="-fx-background-color: #2c3e50;">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+            <children>
+                <Label style="-fx-text-fill: white;" text="Reports and Analytics">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Label style="-fx-text-fill: #ecf0f1;" text="Generate and view system reports">
+                    <font>
+                        <Font name="System" size="12.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+    </top>
+    
+    <!-- Center Content -->
+    <center>
+        <SplitPane dividerPositions="0.35">
+            
+            <!-- Left Panel -->
+            <VBox spacing="15.0">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </padding>
+                
+                <!-- Standard Reports -->
+                <Label style="-fx-font-weight: bold; -fx-font-size: 16.0;" text="Standard Reports" />
+                
+                <!-- Revenue Report -->
+                <VBox spacing="5.0" style="-fx-border-color: #ddd; -fx-border-width: 1; -fx-padding: 10;">
+                    <Label style="-fx-font-weight: bold;" text="Revenue Report" />
+                    <Label style="-fx-text-fill: #666;" text="Monthly revenue analysis" />
+                    <Button fx:id="generateRevenueBtn" onAction="#handlerclickGenerateRevenueReport" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Generate" />
+                </VBox>
+                
+                <!-- Taxpayer Report -->
+                <VBox spacing="5.0" style="-fx-border-color: #ddd; -fx-border-width: 1; -fx-padding: 10;">
+                    <Label style="-fx-font-weight: bold;" text="Taxpayer Report" />
+                    <Label style="-fx-text-fill: #666;" text="Taxpayer statistics and trends" />
+                    <Button fx:id="generateTaxpayerBtn" onAction="#handlerclickGenerateTaxpayerReport" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Generate" />
+                </VBox>
+                
+                <!-- Compliance Report -->
+                <VBox spacing="5.0" style="-fx-border-color: #ddd; -fx-border-width: 1; -fx-padding: 10;">
+                    <Label style="-fx-font-weight: bold;" text="Compliance Report" />
+                    <Label style="-fx-text-fill: #666;" text="Tax compliance analysis" />
+                    <Button fx:id="generateComplianceBtn" onAction="#handlerclickGenerateComplianceReport" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Generate" />
+                </VBox>
+                
+                <!-- Audit Report -->
+                <VBox spacing="5.0" style="-fx-border-color: #ddd; -fx-border-width: 1; -fx-padding: 10;">
+                    <Label style="-fx-font-weight: bold;" text="Audit Report" />
+                    <Label style="-fx-text-fill: #666;" text="System audit and activity logs" />
+                    <Button fx:id="generateAuditBtn" onAction="#handlerclickGenerateAuditReport" style="-fx-background-color: #8e44ad; -fx-text-fill: white;" text="Generate" />
+                </VBox>
+                
+                <Separator />
+                
+                <!-- Custom Report Section -->
+                <Label style="-fx-font-weight: bold; -fx-font-size: 16.0;" text="Custom Report" />
+                
+                <VBox spacing="8.0">
+                    <Label text="Report Type:" />
+                    <ComboBox fx:id="reportTypeCombo" />
+                    
+                    <Label text="Date Range:" />
+                    <HBox spacing="10.0">
+                        <VBox spacing="5.0">
+                            <Label text="Start Date" />
+                            <DatePicker fx:id="startDatePicker" />
+                        </VBox>
+                        <VBox spacing="5.0">
+                            <Label text="End Date" />
+                            <DatePicker fx:id="endDatePicker" />
+                        </VBox>
+                    </HBox>
+                    
+                    <Label text="Format:" />
+                    <ComboBox fx:id="formatCombo" />
+                    
+                    <Label text="Region:" />
+                    <ComboBox fx:id="regionCombo" />
+                    
+                    <HBox spacing="10.0">
+                        <Button fx:id="previewBtn" onAction="#handlerclickPreviewReport" prefHeight="39.0" prefWidth="79.0" style="-fx-background-color: #f39c12; -fx-text-fill: white;" text="Preview" />
+                        <Button fx:id="generateCustomBtn" onAction="#handlerclickGenerateCustomReport" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="Generate" />
+                  <Button fx:id="newTaxpayerBtn1" onAction="#handlerclicknewTaxpayerBtn1" style="-fx-background-color: #FF0000; -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 10 20 10 20; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 16;" text="Back to DashBoard" />
+                    </HBox>
+                </VBox>
+            </VBox>
+            
+            <!-- Right Panel -->
+            <VBox spacing="10.0">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </padding>
+                
+                <!-- Report Header -->
+                <HBox spacing="10.0">
+                    <Label style="-fx-font-weight: bold; -fx-font-size: 16.0;" text="Report Output" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="saveBtn" onAction="#handlerclickSaveReport" text="Save" />
+                    <Button fx:id="clearBtn" onAction="#handlerclickClearReport" text="Clear" />
+                    <Button fx:id="exportBtn" onAction="#handlerclickExportReport" text="Export" />
+                </HBox>
+                
+                <!-- Statistics -->
+                <HBox spacing="20.0" style="-fx-border-color: #ddd; -fx-border-width: 1; -fx-padding: 10;">
+                    <VBox>
+                        <Label style="-fx-text-fill: #666;" text="Report Type:" />
+                        <Label fx:id="statReportType" text="-" />
+                    </VBox>
+                    <VBox>
+                        <Label style="-fx-text-fill: #666;" text="Date Range:" />
+                        <Label fx:id="statDateRange" text="-" />
+                    </VBox>
+                    <VBox>
+                        <Label style="-fx-text-fill: #666;" text="Region:" />
+                        <Label fx:id="statRegion" text="-" />
+                    </VBox>
+                    <VBox>
+                        <Label style="-fx-text-fill: #666;" text="Generated:" />
+                        <Label fx:id="statGenerated" text="-" />
+                    </VBox>
+                </HBox>
+                
+                <!-- Report Display -->
+                <TextArea fx:id="reportDisplayArea" editable="false" style="-fx-font-family: 'Monospaced';" wrapText="true" VBox.vgrow="ALWAYS" />
+                
+                <!-- Status Bar -->
+                <HBox style="-fx-background-color: #eee; -fx-padding: 5;">
+                    <Label fx:id="statusLabel" text="Ready to generate reports" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lineCountLabel" text="0 lines" />
+                </HBox>
+            </VBox>
+            
+        </SplitPane>
+    </center>
+    
+</BorderPane>

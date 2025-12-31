@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="25" style="-fx-background-color: #F4F6F7;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TMSController.AssessmentFormController">
+    
+    <padding>
+        <Insets bottom="30" left="30" right="30" top="30" />
+    </padding>
+    
+    <HBox alignment="CENTER_LEFT">
+        <VBox spacing="5">
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 28; -fx-text-fill: #1A5276;" text="Tax Assessment" />
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 16; -fx-text-fill: #5D6D7E;" text="Calculate and manage tax assessments" />
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <Button fx:id="newAssessmentBtn" onAction="#handleNewAssessment" style="-fx-background-color: linear-gradient(to right, #27AE60, #219653); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 10 20 10 20; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 16;" text="📝 New Assessment" />
+      <Button fx:id="newTaxpayerBtn1" onAction="#handleBackToDashboard" style="-fx-background-color: #2980B9; -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 10 20 10 20; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 16;" text="Back to DashBorad" />
+    </HBox>
+    
+    <HBox alignment="CENTER" spacing="20">
+        <VBox prefHeight="120" prefWidth="180" spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 2);">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #5D6D7E;" text="Total Assessments" />
+            <Label fx:id="totalAssessmentsLabel" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 24; -fx-text-fill: #2980B9;" text="0" />
+        </VBox>
+        
+        <VBox prefHeight="120" prefWidth="180" spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 2);">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #5D6D7E;" text="Pending" />
+            <Label fx:id="pendingAssessmentsLabel" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 24; -fx-text-fill: #E67E22;" text="0" />
+        </VBox>
+        
+        <VBox prefHeight="120" prefWidth="180" spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 2);">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #5D6D7E;" text="Approved" />
+            <Label fx:id="approvedAssessmentsLabel" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 24; -fx-text-fill: #27AE60;" text="0" />
+        </VBox>
+        
+        <VBox prefHeight="120" prefWidth="180" spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 2);">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #5D6D7E;" text="Total Tax Amount" />
+            <Label fx:id="totalTaxAmountLabel" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 22; -fx-text-fill: #8E44AD;" text="ETB  0" />
+        </VBox>
+    </HBox>
+    
+    <TabPane fx:id="assessmentTabs" style="-fx-background-color: transparent; -fx-border-color: transparent;" tabClosingPolicy="UNAVAILABLE">
+        
+        <Tab text="Create Assessment">
+            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-border-color: transparent;">
+                <VBox fx:id="CrateAssessment" spacing="20" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 30;">
+                    
+                    <VBox fx:id="SelectTaxpayer" spacing="15">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 18; -fx-text-fill: #1A5276;" text="1. Select Taxpayer" />
+                        
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <TextField fx:id="txtsearchTaxpayerField" onAction="#handleSearchTaxpayerField" prefHeight="40" prefWidth="300" promptText="Search by TIN or Name" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8; -fx-padding: 10;" />
+                            
+                            <Button fx:id="searchTaxpayerBtn" onAction="#handleSearchTaxpayer" style="-fx-background-color: #2980B9; -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 10 20 10 20;" text="Search" />
+                        </HBox>
+                        
+                        <VBox fx:id="selectedTaxpayerBox" spacing="10" style="-fx-background-color: #F8F9FA; -fx-background-radius: 8; -fx-padding: 15; -fx-border-color: #BDC3C7; -fx-border-width: 1; -fx-border-radius: 8;">
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 16; -fx-text-fill: #2C3E50;" text="Selected Taxpayer: None" />
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #7F8C8D;" text="Please select a taxpayer to continue" />
+                        </VBox>
+                    </VBox>
+                    
+                    <VBox fx:id="AssessmentDetails" spacing="15">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 18; -fx-text-fill: #1A5276;" text="2. Assessment Details" />
+                        
+                        <GridPane hgap="20" vgap="15">
+                            <columnConstraints>
+                                <ColumnConstraints prefWidth="150" />
+                                <ColumnConstraints prefWidth="300" />
+                                <ColumnConstraints prefWidth="150" />
+                                <ColumnConstraints prefWidth="300" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                            </rowConstraints>
+                            
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #2C3E50;" text="Assessment Year:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                            <ComboBox fx:id="assessmentYearCombo" onAction="#handleAssessmentYearCombo" prefHeight="40" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                            
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #2C3E50;" text="Assessment Period:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                            <ComboBox fx:id="assessmentPeriodCombo" onAction="#handleAssessmentPeriodCombo" prefHeight="40" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8;" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                            
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #2C3E50;" text="Gross Income (ETB):" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                            <TextField fx:id="txtgrossIncomeField" prefHeight="40" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8; -fx-padding: 10;" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #2C3E50;" text="Allowable Deductions:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                            <TextField fx:id="txtdeductionsField" prefHeight="40" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8; -fx-padding: 10;" text="0.00" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                            
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #2C3E50;" text="Taxable Income:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                            <TextField fx:id="txttaxableIncomeField" editable="false" prefHeight="40" style="-fx-background-color: #F8F9FA; -fx-border-color: #BDC3C7; -fx-border-radius: 8; -fx-padding: 10;" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                            
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #2C3E50;" text="Tax Rate (%):" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                            <TextField fx:id="txttaxRateField" prefHeight="40" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8; -fx-padding: 10;" text="0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        </GridPane>
+                    </VBox>
+                    
+                    <VBox spacing="15">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 18; -fx-text-fill: #1A5276;" text="3. Tax Calculation" />
+                        
+                        <VBox fx:id="TaxCalculation" spacing="10" style="-fx-background-color: #F8F9FA; -fx-background-radius: 8; -fx-padding: 20; -fx-border-color: #BDC3C7; -fx-border-width: 1; -fx-border-radius: 8;">
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <Label style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 16; -fx-text-fill: #2C3E50;" text="Calculated Tax Amount:" />
+                                <Label fx:id="calculatedTaxLabel" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 24; -fx-text-fill: #C0392B;" text="ETB 0.00" />
+                            </HBox>
+                            
+                            <Button fx:id="calculateTaxBtn" onAction="#handleCalculateTax" style="-fx-background-color: #2980B9; -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 10 20 10 20; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold;" text="Calculate Tax" />
+                        </VBox>
+                    </VBox>
+                    
+                    <VBox fx:id="FinalizeAssessment" spacing="15">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 18; -fx-text-fill: #1A5276;" text="4. Finalize Assessment" />
+                        
+                        <GridPane hgap="20" vgap="15">
+                            <columnConstraints>
+                                <ColumnConstraints prefWidth="150" />
+                                <ColumnConstraints prefWidth="300" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                            </rowConstraints>
+                            
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #2C3E50;" text="Assessment Date:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                            <DatePicker fx:id="assessmentDatePicker" onAction="#handleAssessmentDatePicker" prefHeight="40" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                            
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #2C3E50;" text="Due Date:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                            <DatePicker fx:id="dueDatePicker" onAction="#handleDueDatePicker" prefHeight="40" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #2C3E50;" text="Notes:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                            <TextArea fx:id="assessmentNotesField" prefRowCount="3" promptText="Enter assessment notes" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8; -fx-padding: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        </GridPane>
+                        
+                        <HBox alignment="CENTER" spacing="20">
+                            <Button fx:id="saveAssessmentBtn" onAction="#handleSaveAssessment" prefHeight="45" prefWidth="150" style="-fx-background-color: linear-gradient(to right, #27AE60, #219653); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 16;" text="Save Assessment" />
+                            
+                            <Button fx:id="cancelAssessmentBtn" onAction="#handleCancelAssessment" prefHeight="45" prefWidth="100" style="-fx-background-color: #7F8C8D; -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 16;" text="Cancel" />
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+        
+        <Tab fx:id="viewAssessment" text="View Assessments">
+            <VBox spacing="15">
+                <padding>
+                    <Insets bottom="15" left="15" right="15" top="15" />
+                </padding>
+                
+                <HBox fx:id="DateorStatus" alignment="CENTER_LEFT" spacing="15">
+                    <DatePicker fx:id="viewStartDate" onAction="#handleViewStartDate" promptText="Start Date" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8;" />
+                    <DatePicker fx:id="viewEndDate" onAction="#handleViewEndDate" promptText="End Date" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8;" />
+                    <ComboBox fx:id="assessmentStatusFilter" onAction="#handleAssessmentStatusFilter" prefWidth="150" promptText="Status" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 8;" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="Filterbtn" onAction="#handleFilterAssessments" style="-fx-background-color: #2980B9; -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 8 15 8 15;" text="Filter" />
+                </HBox>
+                
+                <TableView fx:id="assessmentsTable" style="-fx-background-color: white; -fx-background-radius: 10;">
+                    <columns>
+                        <TableColumn fx:id="AssessmentID" prefWidth="100" text="Assessment ID" />
+                        <TableColumn fx:id="Taxpayer" prefWidth="200" text="Taxpayer" />
+                        <TableColumn fx:id="year" prefWidth="80" text="Year" />
+                        <TableColumn fx:id="period" prefWidth="100" text="Period" />
+                        <TableColumn fx:id="Taxincome" prefWidth="120" text="Taxable Income" />
+                        <TableColumn fx:id="TaxAmount" prefWidth="120" text="Tax Amount" />
+                        <TableColumn fx:id="Status" prefWidth="100" text="Status" />
+                        <TableColumn fx:id="Actions" prefWidth="150" text="Actions" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" 
+           fx:controller="TMSController.SignUpController">
+    
+    <!-- Main Container with proper sizing -->
+    <VBox fx:id="mainContainer" alignment="TOP_CENTER" spacing="15" 
+          style="-fx-background-color: rgba(255, 255, 255, 0.98); -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 25, 0.5, 0, 5);">
+        <padding>
+            <Insets bottom="25" left="40" right="40" top="25" />
+        </padding>
+        
+        <!-- Header Section -->
+        <VBox fx:id="logooftaxpayerSystem" alignment="CENTER" spacing="8">
+            <!-- Logo -->
+            <StackPane>
+                <Circle fill="#1A5276" radius="35" stroke="WHITE" strokeWidth="2" />
+                <VBox alignment="CENTER" spacing="1">
+                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 22; -fx-text-fill: white;" text="ERS" />
+                    <Label style="-fx-font-family: 'Nyala'; -fx-font-size: 16; -fx-text-fill: white;" text="ገቢ" />
+                </VBox>
+            </StackPane>
+            
+            <!-- Titles -->
+            <Label alignment="CENTER" style="-fx-font-family: 'Nyala'; -fx-font-size: 22; -fx-text-fill: #1A5276;" text="የኢትዮጵያ ገቢዎች አስተዳደር" wrapText="true" />
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 18; -fx-text-fill: #2980B9;" text="Ethiopian Revenue Service" />
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #5D6D7E;" text="USER SIGNUP" />
+        </VBox>
+        
+        <!-- Language Selection -->
+        <VBox fx:id="selectedLanaguage" alignment="CENTER" spacing="8">
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #2C3E50; -fx-font-weight: bold;" text="Select Language /" />
+            <HBox alignment="CENTER" spacing="10">
+                <ComboBox fx:id="languageComboBox" prefHeight="32" prefWidth="180" promptText="Select language..." style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6;" />
+            </HBox>
+        </VBox>
+        
+        <Separator prefWidth="400" style="-fx-background-color: #ECF0F1;" />
+        
+        <!-- Two Column Layout Container -->
+        <HBox fx:id="signupLayoutContainer" alignment="TOP_CENTER" spacing="30">
+            <!-- Left Column - Personal Information -->
+            <VBox prefWidth="400" spacing="15">
+                <!-- Personal Information Section -->
+                <VBox fx:id="personalInformation" spacing="10" style="-fx-background-color: #F8F9FA; -fx-background-radius: 10; -fx-padding: 15; -fx-border-color: #E9ECEF; -fx-border-width: 1; -fx-border-radius: 10;">
+                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 14; -fx-text-fill: #2C3E50; -fx-padding: 0 0 8 0;" text="Personal Information " />
+                    
+                    <!-- First Name -->
+                    <VBox spacing="3">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #2C3E50;" text="First Name " />
+                        <TextField fx:id="firstNameField" prefHeight="35" promptText="Enter first name" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6; -fx-padding: 8; -fx-font-size: 13; -fx-pref-width: 350;" />
+                    </VBox>
+                    
+                    <!-- Last Name -->
+                    <VBox spacing="3">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #2C3E50;" text="Last Name " />
+                        <TextField fx:id="lastNameField" prefHeight="35" promptText="Enter last name" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6; -fx-padding: 8; -fx-font-size: 13; -fx-pref-width: 350;" />
+                    </VBox>
+                    
+                    <!-- Gender -->
+                    <VBox spacing="3">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #2C3E50;" text="Gender " />
+                        <ComboBox fx:id="genderComboBox" prefHeight="35" promptText="Select gender" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6; -fx-pref-width: 350;" />
+                    </VBox>
+                    
+                    <!-- Date of Birth - FIXED CSS -->
+                    <VBox spacing="3">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #2C3E50;" text="Date of Birth " />
+                        <DatePicker fx:id="dobDatePicker" prefHeight="35" promptText="YYYY-MM-DD" 
+                                    style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6; -fx-pref-width: 350;" />
+                    </VBox>
+                    
+                    <!-- Email -->
+                    <VBox spacing="3">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #2C3E50;" text="Email Address " />
+                        <TextField fx:id="emailField" prefHeight="35" promptText="example@domain.com" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6; -fx-padding: 8; -fx-font-size: 13; -fx-pref-width: 350;" />
+                    </VBox>
+                    
+                    <!-- Phone Number -->
+                    <VBox spacing="3">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #2C3E50;" text="Phone Number " />
+                        <TextField fx:id="phoneField" prefHeight="35" promptText="+251-9XX-XXXXXX or +2519XXXXXXXX" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6; -fx-padding: 8; -fx-font-size: 13; -fx-pref-width: 350;" />
+                    </VBox>
+                    
+                    <!-- Business Name -->
+                    <VBox spacing="3">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #2C3E50;" text="Business Name " />
+                        <TextField fx:id="businessNameField" prefHeight="35" promptText="Enter business name" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6; -fx-padding: 8; -fx-font-size: 13; -fx-pref-width: 350;" />
+                    </VBox>
+                    
+                    <!-- Address -->
+                    <VBox spacing="3">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #2C3E50;" text="Address " />
+                        <TextArea fx:id="addressField" prefHeight="60" promptText="Enter your address" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6; -fx-padding: 8; -fx-font-size: 13; -fx-pref-width: 350;" wrapText="true" />
+                    </VBox>
+                    
+                    <!-- Terms and Conditions -->
+                    <VBox spacing="8" style="-fx-padding: 10 0 0 0;">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <CheckBox fx:id="termsCheckBox" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #5D6D7E;" text="I agree to Terms" />
+                            <Hyperlink fx:id="viewTermsLink" style="-fx-text-fill: #2980B9; -fx-underline: false; -fx-font-family: 'Segoe UI'; -fx-font-size: 11;" text="View Terms /" />
+                        </HBox>
+                        
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <CheckBox fx:id="privacyCheckBox" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #5D6D7E;" text="I agree to Privacy Policy" />
+                            <Hyperlink fx:id="viewPrivacyLink" style="-fx-text-fill: #2980B9; -fx-underline: false; -fx-font-family: 'Segoe UI'; -fx-font-size: 11;" text="View Privacy /" />
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </VBox>
+            
+            <!-- Right Column - Account Information with Scroll Pane -->
+            <ScrollPane fitToWidth="true" prefHeight="500" prefWidth="400" 
+                        style="-fx-background-color: transparent; -fx-background: transparent; -fx-padding: 0;"
+                        hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+                <VBox fx:id="accountInformationContainer" spacing="15">
+                    <!-- Account Information Section -->
+                    <VBox fx:id="accountInformation" spacing="10" style="-fx-background-color: #F8F9FA; -fx-background-radius: 10; -fx-padding: 15; -fx-border-color: #E9ECEF; -fx-border-width: 1; -fx-border-radius: 10;">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 14; -fx-text-fill: #2C3E50; -fx-padding: 0 0 8 0;" text="Account Information " />
+                        
+                        <!-- Username -->
+                        <VBox spacing="3">
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #2C3E50;" text="Username " />
+                            <TextField fx:id="usernameField" prefHeight="35" promptText="Choose username" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6; -fx-padding: 8; -fx-font-size: 13; -fx-pref-width: 350;" />
+                        </VBox>
+                        
+                        <!-- Taxpayer ID -->
+                        <VBox spacing="3">
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #2C3E50;" text="Taxpayer ID " />
+                            <TextField fx:id="taxpayerIdField" prefHeight="35" promptText="Enter taxpayer ID" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6; -fx-padding: 8; -fx-font-size: 13; -fx-pref-width: 350;" />
+                        </VBox>
+                        
+                        <!-- Password -->
+                        <VBox spacing="3">
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #2C3E50;" text="Password " />
+                            <HBox alignment="CENTER" spacing="5">
+                                <PasswordField fx:id="passwordField" prefHeight="35" promptText="Enter password" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6; -fx-padding: 8; -fx-font-size: 13; -fx-pref-width: 300;" />
+                                <Button fx:id="showPasswordBtn" prefHeight="35" prefWidth="40" style="-fx-background-color: #BDC3C7; -fx-border-color: #95A5A6; -fx-border-radius: 6; -fx-font-size: 16; -fx-text-fill: #2C3E50;" text="👁" />
+                            </HBox>
+                        </VBox>
+                        
+                        <!-- Confirm Password -->
+                        <VBox spacing="3">
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #2C3E50;" text="Confirm Password " />
+                            <PasswordField fx:id="confirmPasswordField" prefHeight="37.0" prefWidth="303.0" promptText="Confirm password" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6; -fx-padding: 8; -fx-font-size: 13; -fx-pref-width: 350;" />
+                        </VBox>
+                        
+                        <!-- User Type -->
+                        <VBox spacing="3">
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #2C3E50;" text="User Type " />
+                            <ComboBox fx:id="userTypeComboBox" prefHeight="35" promptText="Select user type" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6; -fx-pref-width: 350;" />
+                        </VBox>
+                        
+                        <!-- Business TIN -->
+                        <VBox spacing="3">
+                            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #2C3E50;" text="Business TIN " />
+                            <TextField fx:id="businessTinField" prefHeight="35" promptText="Enter business TIN" style="-fx-background-color: white; -fx-border-color: #BDC3C7; -fx-border-radius: 6; -fx-padding: 8; -fx-font-size: 13; -fx-pref-width: 350;" />
+                        </VBox>
+                        
+                        <!-- Newsletter Checkbox -->
+                        <VBox spacing="8" style="-fx-padding: 10 0 0 0;">
+                            <CheckBox fx:id="newsletterCheckBox" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #5D6D7E;" text="Subscribe to newsletter and updates" />
+                        </VBox>
+                    </VBox>
+                    
+                    <!-- Action Buttons -->
+                    <VBox alignment="CENTER" spacing="15">
+                        <HBox alignment="CENTER" spacing="15">
+                            <Button fx:id="signUpButton" prefHeight="40" prefWidth="180" 
+                                    style="-fx-background-color: linear-gradient(to right, #27AE60, #219653); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(46, 204, 113, 0.3), 8, 0.5, 0, 2); -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 14;" 
+                                    text="Sign up" />
+                            
+                            <Button fx:id="clearButton" prefHeight="40" prefWidth="180" 
+                                    style="-fx-background-color: #BDC3C7; -fx-background-radius: 8; -fx-text-fill: #2C3E50; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 14;" 
+                                    text="Clear Form" />
+                        </HBox>
+                        
+                        <Button fx:id="cancelButton" prefHeight="40" prefWidth="375" 
+                                style="-fx-background-color: #E74C3C; -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(231, 76, 60, 0.3), 8, 0.5, 0, 2); -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 14;" 
+                                text="Cancel " />
+                    </VBox>
+                </VBox>
+            </ScrollPane>
+        </HBox>
+        
+        <!-- Login Link -->
+        <HBox alignment="CENTER" spacing="5" style="-fx-padding: 15 0 0 0;">
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-text-fill: #5D6D7E;" text="Already have an account?" />
+            <Hyperlink fx:id="signInLink" style="-fx-text-fill: #2980B9; -fx-underline: false; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-size: 12; -fx-font-weight: bold;" text="Sign In Here" />
+        </HBox>
+        
+        <!-- Footer -->
+        <VBox alignment="CENTER" spacing="5" style="-fx-padding: 15 0 0 0;">
+            <Separator prefWidth="400" style="-fx-background-color: #ECF0F1;" />
+            
+            <HBox alignment="CENTER" spacing="15">
+                <Hyperlink fx:id="footerPrivacyLink" style="-fx-text-fill: #7F8C8D; -fx-underline: false; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-size: 10;" text="Privacy Policy" />
+                <Label style="-fx-text-fill: #BDC3C7;" text="•" />
+                <Hyperlink fx:id="footerTermsLink" style="-fx-text-fill: #7F8C8D; -fx-underline: false; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-size: 10;" text="Terms of Service" />
+                <Label style="-fx-text-fill: #BDC3C7;" text="•" />
+                <Hyperlink fx:id="footerSupportLink" style="-fx-text-fill: #7F8C8D; -fx-underline: false; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-size: 10;" text="Support" />
+            </HBox>
+            
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 9; -fx-text-fill: #95A5A6;" text="Version 3.1.0 | © 2025 Ethiopian Revenue Service" />
+        </VBox>
+    </VBox>
+</StackPane>

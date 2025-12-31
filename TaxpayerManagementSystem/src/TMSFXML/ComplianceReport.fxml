@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TMSController.ComplianceReportController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    
+    <!-- Header -->
+    <VBox spacing="5.0">
+        <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Compliance Report" />
+        <Label style="-fx-text-fill: #666666; -fx-font-size: 14px;" text="Tax compliance analysis" />
+    </VBox>
+    
+    <Separator />
+    
+    <!-- Report Criteria -->
+    <VBox spacing="15.0">
+        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Report Criteria" />
+        
+        <GridPane hgap="15.0" vgap="10.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" prefWidth="150.0" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+            
+            <Label style="-fx-font-weight: bold;" text="Compliance Period:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <ComboBox fx:id="periodCombo" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            
+            <Label style="-fx-font-weight: bold;" text="Year:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="yearField" prefWidth="100.0" promptText="2024" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            
+            <Label style="-fx-font-weight: bold;" text="Tax Type:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <ComboBox fx:id="taxTypeCombo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            
+            <Label style="-fx-font-weight: bold;" text="Region:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <ComboBox fx:id="regionCombo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            
+            <Label style="-fx-font-weight: bold;" text="Business Size:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <ComboBox fx:id="businessSizeCombo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        </GridPane>
+    </VBox>
+    
+    <!-- Compliance Metrics -->
+    <VBox spacing="10.0">
+        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Compliance Metrics" />
+        
+        <GridPane hgap="15.0" vgap="15.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="180.0" />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="180.0" />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="180.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+            </rowConstraints>
+            
+            <!-- Compliance Rate -->
+            <VBox spacing="5.0" style="-fx-padding: 15; -fx-background-color: #e8f5e8; -fx-border-color: #c8e6c9; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="0">
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #666;" text="Overall Compliance Rate" />
+                <Label fx:id="complianceRateLabel" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2e7d32;" text="0%" />
+                <ProgressBar fx:id="complianceProgress" prefHeight="10.0" progress="0.0" />
+            </VBox>
+            
+            <!-- On-Time Filing -->
+            <VBox spacing="5.0" style="-fx-padding: 15; -fx-background-color: #fff3e0; -fx-border-color: #ffe0b2; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="1">
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #666;" text="On-Time Filing Rate" />
+                <Label fx:id="filingRateLabel" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ef6c00;" text="0%" />
+                <ProgressBar fx:id="filingProgress" prefHeight="10.0" progress="0.0" />
+            </VBox>
+            
+            <!-- Payment Compliance -->
+            <VBox spacing="5.0" style="-fx-padding: 15; -fx-background-color: #e3f2fd; -fx-border-color: #bbdefb; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="2">
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #666;" text="Payment Compliance" />
+                <Label fx:id="paymentComplianceLabel" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1565c0;" text="0%" />
+                <ProgressBar fx:id="paymentProgress" prefHeight="10.0" progress="0.0" />
+            </VBox>
+        </GridPane>
+    </VBox>
+    
+    <!-- Non-Compliance Details -->
+    <VBox spacing="10.0">
+        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Non-Compliance Analysis" />
+        <TableView fx:id="nonComplianceTable" prefHeight="250.0" />
+    </VBox>
+    
+    <!-- Action Buttons -->
+    <HBox spacing="10.0">
+        <Button fx:id="Generatereportbtn" defaultButton="true" onAction="#handlerclickGeneratereportbtn" style="-fx-font-weight: bold; -fx-padding: 10 20; -fx-background-color: #673ab7; -fx-text-fill: white;" text="Generate Report" />
+        <Button fx:id="ExportDetailsbtn" onAction="#handlerclickExportDetailsbtn" style="-fx-padding: 10 20;" text="Export Details" />
+        <Button fx:id="GenerateAlertsbtn" onAction="#handlerclickGenerateAlertsbtn" style="-fx-padding: 10 20; -fx-background-color: #f44336; -fx-text-fill: white;" text="Generate Alerts" />
+        <Region HBox.hgrow="ALWAYS" />
+      <Button fx:id="backButtonReportpage" onAction="#handlerclickbackButtonReportpage" prefHeight="40" prefWidth="180.0" style="-fx-background-color: linear-gradient(to right, #27AE60, #219653); -fx-background-radius: 8; -fx-text-fill: white; -fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-effect: dropshadow(gaussian, rgba(46, 204, 113, 0.3), 10, 0.5, 0, 2);" text="← Back to Report Page" />
+    </HBox>
+</VBox>
